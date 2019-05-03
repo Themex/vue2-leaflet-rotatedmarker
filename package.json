@@ -1,6 +1,6 @@
 {
-  "name": "vue2-leaflet-rotatedmarkerv2",
-  "version": "1.0.8",
+  "name": "vue2-leaflet-es6rotatedmarker",
+  "version": "1.1.0",
   "description": "rotatedmarker plugin extension for vue2-leaflet package",
   "main": "dist/Vue2LeafletRotatedMarker.js",
   "scripts": {
@@ -26,12 +26,11 @@
     "leaflet": "^1.4.0"
   },
   "dependencies": {
-    "leaflet": "^1.4.0",
-    "leaflet-rotatedmarker": "^0.2.0"
+    "vue2-leaflet-markercluster": "^3.0.0",
+    "vue2-leaflet": "^2.1.1"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.0",
-    "vue2-leaflet": "^2.1.1",
     "vue-cli": "~2.8.2",
     "webpack-node-externals": "^1.5.4"
   }

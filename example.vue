@@ -2,12 +2,14 @@
   <v-map :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
+    <v-marker-cluster :options="clusterOptions">
       <v-rotated-marker v-for="l in locations" :key="l.id"
                         :lat-lng="l.latlng"
                         :icon="icon"
                         @click="handleMarkerClick(l)"
                         :rotationAngle="l.yaw">
       </v-rotated-marker>
+    </v-marker-cluster>
   </v-map>
 </template>
 
@@ -15,6 +17,9 @@
   import * as L from 'leaflet'
   import * as Vue2Leaflet from 'vue2-leaflet'
   import Vue2LeafletRotatedMarker from './Vue2LeafletRotatedMarker'
+  import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+  import 'leaflet.markercluster/dist/MarkerCluster.css'
+  import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
   import iconUrl from 'arrow-red.svg'
   import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
@@ -30,7 +35,8 @@
       'v-tilelayer': Vue2Leaflet.LTileLayer,
       'v-icondefault': Vue2Leaflet.LIconDefault,
       'v-marker': Vue2Leaflet.LMarker,
-      'v-rotated-marker': Vue2LeafletRotatedMarker
+      'v-rotated-marker': Vue2LeafletRotatedMarker,
+      'v-marker-cluster': Vue2LeafletMarkerCluster
     },
     methods: {
       handleMarkerClick(l){
@@ -42,13 +48,13 @@
       for (let i = 0; i < 10; i++) {
         locations.push({
           id: i,
-          yaw:0,
+          yaw: 45,
           latlng: L.latLng(rand(-34.9205), rand(-57.953646)),
           text: 'Hola ' + i
         })
       }
       let icon = L.icon({
-        iconUrl: 'arrow-red.svg',
+        iconUrl:iconUrl,
         iconSize: [30, 30],
         iconAnchor: [20, 20]
       });
@@ -56,17 +62,8 @@
         locations,
         icon,
         clusterOptions: {},
-        rotationAngle:45,
         initialLocation: L.latLng(-34.9205, -57.953646)
       }
-    },
-    mounted() {
-      setTimeout(() => {
-        console.log('done');
-        this.$nextTick(() =>{
-          this.clusterOptions = { disableClusteringAtZoom: 11 }
-        });
-      }, 5000);
     }
   }
 </script>
