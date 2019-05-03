@@ -48,7 +48,7 @@
         })
       }
       let icon = L.icon({
-        iconUrl: 'https://panel-scannergps.com/img/markers/arrow-red.svg',
+        iconUrl: 'arrow-red.svg',
         iconSize: [30, 30],
         iconAnchor: [20, 20]
       });

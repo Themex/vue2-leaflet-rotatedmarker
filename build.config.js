@@ -4,8 +4,8 @@ module.exports = {
   webpack: {
     externals: [
       nodeExternals(),
-      {'leaflet': 'L'},
-      {'leaflet.rotatedmarker': {root: ['leaflet', 'rotatedmarker']}}
+      //{'leaflet': 'L'},
+      //{'leaflet.rotatedmarker': {root: ['leaflet', 'rotatedmarker']}}
     ]
   }
 }
