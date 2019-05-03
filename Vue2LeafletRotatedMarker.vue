@@ -92,7 +92,7 @@ export default {
       }
     },
     setLatLng (newVal) {
-      if (newVal == null) {
+      if (newVal === null) {
         return
       }
       if (this.mapObject) {

@@ -2,25 +2,25 @@
   <v-map :zoom=10 :center="initialLocation">
     <v-icondefault></v-icondefault>
     <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-    <v-rotated-marker v-for="l in locations" :key="l.id" 
-      :lat-lng="l.latlng" 
-      :icon="icon" 
-      @click="handleMarkerClick(l)"
-      :rotationAngle="l.yaw">
-    </v-rotated-marker>
+      <v-rotated-marker v-for="l in locations" :key="l.id"
+                        :lat-lng="l.latlng"
+                        :icon="icon"
+                        @click="handleMarkerClick(l)"
+                        :rotationAngle="l.yaw">
+      </v-rotated-marker>
   </v-map>
 </template>
 
 <script>
-  import L from 'leaflet'
+  import * as L from 'leaflet'
   import * as Vue2Leaflet from 'vue2-leaflet'
   import Vue2LeafletRotatedMarker from './Vue2LeafletRotatedMarker'
-  import iconUrl from 'leaflet/dist/images/marker-icon.png'
+  import iconUrl from 'arrow-red.svg'
   import shadowUrl from 'leaflet/dist/images/marker-shadow.png'
 
   function rand(n) {
-    let max = n + 0.1
-    let min = n - 0.1
+    let max = n + 0.1;
+    let min = n - 0.1;
     return Math.random() * (max - min) + min;
   }
 
@@ -38,7 +38,7 @@
       }
     },
     data () {
-      let locations = []
+      let locations = [];
       for (let i = 0; i < 10; i++) {
         locations.push({
           id: i,
@@ -47,10 +47,11 @@
           text: 'Hola ' + i
         })
       }
-      let icon = L.icon(Object.assign({},
-        L.Icon.Default.prototype.options,
-        {iconUrl, shadowUrl}
-      ))
+      let icon = L.icon({
+        iconUrl: 'https://panel-scannergps.com/img/markers/arrow-red.svg',
+        iconSize: [30, 30],
+        iconAnchor: [20, 20]
+      });
       return {
         locations,
         icon,
@@ -61,7 +62,7 @@
     },
     mounted() {
       setTimeout(() => {
-        console.log('done')
+        console.log('done');
         this.$nextTick(() =>{
           this.clusterOptions = { disableClusteringAtZoom: 11 }
         });
